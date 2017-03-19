@@ -1,6 +1,9 @@
 #!/usr/bin/env node
-var program = require('commander');
-var seneca = require('./seneca.js');
+
+/* eslint no-console: "off" */
+
+const program = require('commander');
+const seneca = require('./seneca.js');
 
 program
   .option('-v, --verify <email>', 'verifys the email address given as a Seneca email')
