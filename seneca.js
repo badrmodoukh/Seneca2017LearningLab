@@ -17,6 +17,5 @@ exports.isValidEmail = function isValidEmail(email) {
  * this person. NOTE: the email doesn't need to be real/valid/active.
  */
 exports.formatSenecaEmail = function formatSenecaEmail(name) {
-  name.trim();
   return name.concat('@myseneca.ca');
 };
