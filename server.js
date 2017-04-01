@@ -1,54 +1,55 @@
 // Load the express web framework module
-var express = require('express');
+const express = require('express');
 // Load our seneca module
-var seneca = require('./seneca');
+const seneca = require('./seneca');
 
 // Create an instance of express
-var app = express();
+const app = express();
 
 // Use port 3000 unless one is set in the env
-var port = process.env.PORT || 3000;
+const port = process.env.PORT || 3000;
 
 // Define some HTTP routes (e.g., URLs) users can access on our server
 
 // GET http://localhost:3000/
-app.get('/', function (req, res) {
+app.get('/', (req, res) => {
   res.send('My Server is working!');
 });
 
 // GET http://localhost:3000/validate/someone@myseneca.ca
-app.get('/validate/:email', function (req, res) {
-  var email = req.params.email;
+app.get('/validate/:email', (req, res) => {
+  const email = req.params.email;
 
   // Return a JSON formatted response indicating that the given
   // email address is valid or invalid.
   res.json({
+    /* eslint object-shorthand: "off" */
     email: email,
-    valid: seneca.isValidEmail(email)
+    valid: seneca.isValidEmail(email),
   });
 });
 
 // GET http://localhost:3000/format/someone
-app.get('/format/:name', function (req, res) {
-  var name = req.params.name;
+app.get('/format/:name', (req, res) => {
+  const name = req.params.name;
 
   // Return a JSON formatted response with the given name
   // formatted as a valid email address.
   res.json({
     name: name,
-    email: seneca.formatSenecaEmail(name)
+    email: seneca.formatSenecaEmail(name),
   });
 });
 
 // GET http://localhost:3000/healthcheck
-app.get('/healthcheck', function (req, res) {
-  var uptime = process.uptime();
+app.get('/healthcheck', (req, res) => {
+  const uptime = process.uptime();
 
   res.json({
-    uptime: uptime
+    uptime: uptime,
   });
 });
-
-app.listen(port, function () {
-  console.log('Server started on http://localhost:' + port);
+/* eslint no-console: "off" */
+app.listen(port, () => {
+  console.log(`Server started on http://localhost:${port}`);
 });
